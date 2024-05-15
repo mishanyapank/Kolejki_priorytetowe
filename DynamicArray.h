@@ -1,3 +1,4 @@
+//tworzenie dynamicznej tablicy do przechowywania elementów kopca
 #ifndef DYNAMIC_ARRAY_H
 #define DYNAMIC_ARRAY_H
 
@@ -14,11 +15,12 @@
 #include <ctime>
 using namespace std;
 
+//definiuje typ danych Element
 struct Element {
     int key;
     int value;
 };
-
+//Implementacja tablicy dynamicznej dla elementów typu Element
 class DynamicArray {
 private:
     Element* array;
