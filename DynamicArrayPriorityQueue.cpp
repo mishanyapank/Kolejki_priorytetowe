@@ -1,5 +1,5 @@
-﻿#include "DynamicArrayPriorityQueue.h"
-#include <algorithm>
+#include "DynamicArrayPriorityQueue.h"
+
 
 void DynamicArrayPQ::ensureCapacity() {
     if (size >= capacity) {
@@ -16,14 +16,20 @@ void DynamicArrayPQ::ensureCapacity() {
 void DynamicArrayPQ::insert(ElementDynamicArray elem) {
     ensureCapacity();
     elements[size++] = elem;
-    std::sort(elements, elements + size, [](const ElementDynamicArray& a, const ElementDynamicArray& b) {
-        return a.key > b.key; 
+    sort(elements, elements + size, [](const ElementDynamicArray& a, const ElementDynamicArray& b) {
+        return a.key > b.key;
         });
+}
+void DynamicArrayPQ::displayinsert(ElementDynamicArray elem) {
+    for (int i = 0; i < size; ++i) {
+        cout << elements[i].value << "(" << elements[i].key << ")" << " ";
+    }
+    cout << endl;
 }
 
 ElementDynamicArray DynamicArrayPQ::extractMax() {
     if (isEmpty()) {
-        throw std::runtime_error("Array is empty");
+        throw runtime_error("kolejka jest pusta");
     }
     ElementDynamicArray maxElement = elements[0];
     for (int i = 1; i < size; i++) {
@@ -35,21 +41,35 @@ ElementDynamicArray DynamicArrayPQ::extractMax() {
 
 ElementDynamicArray DynamicArrayPQ::findMax() {
     if (isEmpty()) {
-        throw std::runtime_error("Array is empty");
+        throw runtime_error("kolejka jest pusta");
     }
     return elements[0];
+}
+void DynamicArrayPQ::displayMax() {
+    const ElementDynamicArray& maxElement = elements[0];
+    cout << maxElement.value << "(" << maxElement.key << ")" << endl;
 }
 
 void DynamicArrayPQ::modifyKey(int index, int newKey) {
     if (index < 0 || index >= size) {
-        throw std::runtime_error("Index out of bounds");
+        throw runtime_error("index poza zakresem");
     }
     elements[index].key = newKey;
-    std::sort(elements, elements + size, [](const ElementDynamicArray& a, const ElementDynamicArray& b) {
-        return a.key > b.key; 
+    sort(elements, elements + size, [](const ElementDynamicArray& a, const ElementDynamicArray& b) {
+        return a.key > b.key;
         });
 }
 
 int DynamicArrayPQ::returnSize() {
     return size;
+}
+void DynamicArrayPQ::displaySize() {
+    cout << "Rozmiar kolejki: " << returnSize() << endl;
+}
+void DynamicArrayPQ::clear() {
+    if (elements != nullptr) {
+        delete[] elements;
+        elements = nullptr;
+    }
+    size = 0;
 }
