@@ -1,9 +1,18 @@
-#pragma once
 #ifndef DYNAMIC_ARRAY_PRIORITY_QUEUE_H
 #define DYNAMIC_ARRAY_PRIORITY_QUEUE_H
 
+#include <iostream>
+#include <random>
+#include <fstream>
+#include <string>
+#include <chrono>
+#include <conio.h>
 #include <stdexcept>
 #include <algorithm>
+#include <vector>
+#include <cstdlib>
+#include <ctime>
+using namespace std;
 
 struct ElementDynamicArray {
     int key;
@@ -21,7 +30,7 @@ public:
         elements = new ElementDynamicArray[capacity];
     }
     ~DynamicArrayPQ() {
-        delete[] elements;
+        clear();
     }
 
     void insert(ElementDynamicArray elem);
@@ -32,6 +41,9 @@ public:
     bool isEmpty() const { return size == 0; }
     int getSize() const { return size; }
     void ensureCapacity();
+    void displayinsert(ElementDynamicArray elem);
+    void displayMax();
+    void displaySize();
+    void clear();
 };
 
-#endif
