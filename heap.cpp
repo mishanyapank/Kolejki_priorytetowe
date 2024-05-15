@@ -1,6 +1,6 @@
-﻿#include "heap.h"
+#include "heap.h"
 
-
+//metoda insert dodaje nowy element do kopca
 void Heap::insert(Element elem) {
     data.pushBack(elem);
     int i = data.getSize() - 1;
@@ -10,9 +10,10 @@ void Heap::insert(Element elem) {
     }
 }
 
+//metoda extractMax() usuwa i zwraca element z największym kluczem
 Element Heap::extractMax() {
     if (data.isEmpty()) {
-        cout << "";
+        cout << "Kopiec jest pusty";
     }
 
     Element max = data[0];
@@ -21,18 +22,20 @@ Element Heap::extractMax() {
     heapify(0);
     return max;
 }
-
+//Metoda findMax zwraca element z największym kluczem bez jego usuwania
 Element Heap::findMax() {
-    if (data.isEmpty())
-        throw runtime_error("Kopiec jest pusty");
-
+    if (data.isEmpty()) {
+        cout<< "Kopiec jest pusty";
+    }
     return data[0];
 }
+//metoda displayMax wyświetla element z największym kluczem
 void Heap::displayMax() {
     const Element& maxElement = data[0];
     cout << maxElement.value <<"(" << maxElement.key <<")"<<endl;
 }
-
+//rekurencyjna metoda heapify która przez porównywanie i zamianę elementów 
+//przywraca właściwości kopca
 void Heap::heapify(int index) {
     int l = left(index);
     int r = right(index);
@@ -46,14 +49,16 @@ void Heap::heapify(int index) {
         heapify(largest);
     }
 }
-
+//metoda buubbleUp podbija element w górę kopca jeśli jego nowy klucz jest 
+//większy od klucza rodzica
 void Heap::bubbleUp(int index) {
     while (index != 0 && data[parent(index)].key < data[index].key) {
         swap(data[index], data[parent(index)]);
         index = parent(index);
     }
 }
-
+//modyfikuje klucz elementu o danym indeksie i przywraca właściwości kopca
+//wywołujac jedną z dwóch wyżej wymienionych metod
 void Heap::modifyKey(int index, int newKey) {
     int oldKey = data[index].key;
     data[index].key = newKey;
@@ -64,15 +69,19 @@ void Heap::modifyKey(int index, int newKey) {
         heapify(index);
     }
 }
+//wyświetla rozmiar
 void Heap::displaySize() {
     cout << "Rozmiar kopca: " << returnSize() << endl;
 }
+//zwraca rozmiar kopca
 int Heap::returnSize() {
     return data.getSize();
 }
+//czyści kopiec ustawiając rozmiar na 0
 void Heap::clear() {
     data.setSize(0);
 }
+//wyświetla wszystkie elementy kopca
 void Heap::display() {
     cout << "Zawartość kopca: ";
     for (int i = 0; i < data.getSize(); ++i) {
