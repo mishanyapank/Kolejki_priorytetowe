@@ -1,8 +1,18 @@
-#pragma once
 #ifndef DYNAMIC_ARRAY_H
 #define DYNAMIC_ARRAY_H
 
 #include <iostream>
+#include <random>
+#include <fstream>
+#include <string>
+#include <chrono>
+#include <conio.h>
+#include <stdexcept>
+#include <algorithm>
+#include <vector>
+#include <cstdlib>
+#include <ctime>
+using namespace std;
 
 struct Element {
     int key;
