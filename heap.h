@@ -1,3 +1,4 @@
+//tworzenie kopca za pomocą tablicy dynamicznej
 #ifndef HEAP_H
 #define HEAP_H
 
@@ -21,8 +22,10 @@ class Heap {
 private:
     DynamicArray data;
 
+    //przywracanie właściwości kopca
     void heapify(int index);
     void bubbleUp(int index);
+    //funkcje pomocnicze zawierające indeksy rodzica i obu potomków
     int parent(int index) { return (index - 1) / 2; }
     int left(int index) { return 2 * index + 1; }
     int right(int index) { return 2 * index + 2; }
