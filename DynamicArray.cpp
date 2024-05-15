@@ -18,9 +18,5 @@ void DynamicArray::pushBack(Element elem) {
 }
 
 Element& DynamicArray::operator[](int index) {
-    if (index < 0 || index >= size) {
-        std::cerr << "Index out of bounds" << std::endl;
-        exit(1);
-    }
     return array[index];
 }
