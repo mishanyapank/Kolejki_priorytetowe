@@ -1,8 +1,21 @@
-﻿#pragma once
 #ifndef HEAP_H
 #define HEAP_H
 
 #include "DynamicArray.h"
+#include <iostream>
+#include <random>
+#include <fstream>
+#include <string>
+#include <chrono>
+#include <conio.h>
+#include <stdexcept>
+#include <algorithm>
+#include <vector>
+#include <cstdlib>
+#include <ctime>
+using namespace std;
+
+class DynamicArray;
 
 class Heap {
 private:
@@ -18,10 +31,14 @@ public:
     Heap() {}
     void insert(Element elem);
     Element extractMax();
-    Element findMax() ;
+    Element findMax();
     void modifyKey(int index, int newKey);
     int returnSize();
     bool isEmpty() { return data.isEmpty(); }
+    void clear();
+    void display();
+    void displaySize();
+    void displayMax();
 };
 
 #endif
